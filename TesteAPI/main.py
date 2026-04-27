@@ -4,19 +4,19 @@ app = Flask(__name__)
 
 livros = [
     {
-        'id' = 1,
-        'titulo' = 'O senhor dos aneis',
-        'autor' = 'J.R.R Tolkien'
+         'id': 1,
+         'título': 'O Senhor dos Anéis',
+         'autor': 'J.J.r Tolkien'
     },
     {
-        'id' = 2,
-        'titulo' = 'Harry Potter',
-        'autor' = 'J.K Howling'
+        'id': 2,
+        'titulo': 'Harry Potter',
+        'autor': 'J.K Howling'
     },
     {
-        'id' = 3,
-        'titulo' = 'James Clear',
-        'autor' = 'Hábitos Atômicos'
+        'id': 3,
+        'titulo': 'James Clear',
+        'autor': 'Hábitos Atômicos'
     }
 ]
 
@@ -30,13 +30,13 @@ def obter_livro_por_id():
         if livro.get('id') == id:
             return jsonify(livro)
 
-@app.route('/livros/<int:id>', methods=['PUT']
+@app.route('/livros/<int:id>', methods=['PUT'])
 def editar_livro_por_id(id):
     livro_alterado = request.get_json()
     for indice,livro in enumerate(livros):
-        if livro.get('id) == id:
-                     livro[indice].update(livro_alternado)
-                     return jsonify(livroe[indicie])
+        if livro.get('id') == id:
+                     livro[indice].update(livro_alterado)
+                     return jsonify(livros[indice])
 
 @app.route('/livros', methods=['POST'])
 def incluir_novo_livro():
@@ -46,9 +46,9 @@ def incluir_novo_livro():
 
     return jsonify(livros)
 
-@app.route('/livros/<int:id>', methods=['DELETE']
+@app.route('/livros/<int:id>', methods=['DELETE'])
 def excluir_livro(id):
-    for indice, livro in inumerate(livros):
+    for indice, livro in enumerate(livros):
         if livros.get('id') == id:
             del livros[indice]
 
