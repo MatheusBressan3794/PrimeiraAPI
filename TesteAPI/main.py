@@ -3,21 +3,9 @@ from flask import Flask, jsonify, request
 app = Flask(__name__)
 
 livros = [
-    {
-         'id': 1,
-         'título': 'O Senhor dos Anéis',
-         'autor': 'J.J.r Tolkien'
-    },
-    {
-        'id': 2,
-        'titulo': 'Harry Potter',
-        'autor': 'J.K Howling'
-    },
-    {
-        'id': 3,
-        'titulo': 'James Clear',
-        'autor': 'Hábitos Atômicos'
-    }
+   {'id': 1, 'titulo': 'O Senhor dos Anéis', 'autor': 'J.R.R Tolkien'},
+    {'id': 2, 'titulo': 'Harry Potter', 'autor': 'J.K Rowling'},
+    {'id': 3, 'titulo': 'Hábitos Atômicos', 'autor': 'James Clear'}
 ]
 
 @app.route('/livros', methods=['GET'])
@@ -25,7 +13,7 @@ def obter_livros():
     return jsonify(livros)
 
 @app.route('/livros/<int:id>',methods=['GET'])
-def obter_livro_por_id():
+def obter_livro_por_id(id):
     for livro in livros:
         if livro.get('id') == id:
             return jsonify(livro)
@@ -35,7 +23,7 @@ def editar_livro_por_id(id):
     livro_alterado = request.get_json()
     for indice,livro in enumerate(livros):
         if livro.get('id') == id:
-                     livro[indice].update(livro_alterado)
+                     livros[indice].update(livro_alterado)
                      return jsonify(livros[indice])
 
 @app.route('/livros', methods=['POST'])
@@ -49,7 +37,7 @@ def incluir_novo_livro():
 @app.route('/livros/<int:id>', methods=['DELETE'])
 def excluir_livro(id):
     for indice, livro in enumerate(livros):
-        if livros.get('id') == id:
+        if livro.get('id') == id:
             del livros[indice]
 
     return jsonify(livros)
